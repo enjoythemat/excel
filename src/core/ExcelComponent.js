@@ -5,6 +5,8 @@ export class ExcelComponent extends DOMListener {
     super($root, options.listeners)
     this.name = options.name
     this.emitter = options.emitter
+    this.store = options.store
+    this.subscribe = options.subscribe || []
     this.unsubscribers = []
     this.prepare()
   }
@@ -33,9 +35,22 @@ export class ExcelComponent extends DOMListener {
     this.initDOMListeners()
   }
 
-  // Очистка
+  // Очистка компонента и слушателей
   destroy() {
     this.removeDOMListeners()
     this.unsubscribers.forEach(unsub => unsub())
+  }
+
+  $reduxDispatch(action) {
+    this.store.dispatch(action)
+  }
+
+  // Изменения в подписанных полях
+  storeChanged() {
+
+  }
+
+  isWatching(key) {
+    return this.subscribe.includes(key)
   }
 }
