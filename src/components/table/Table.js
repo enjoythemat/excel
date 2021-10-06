@@ -112,7 +112,6 @@ export class Table extends ExcelComponent {
   }
 
   onInput(event) {
-    console.log($(event.target).text())
     this.updateTextInStore($(event.target).text())
   }
 }
