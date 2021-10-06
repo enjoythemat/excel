@@ -13,6 +13,11 @@ class Dom {
     return this.$el.outerHTML.trim()
   }
 
+  clear() {
+    this.html('')
+    return this
+  }
+
   text(content) {
     if (typeof content !== 'undefined') {
       this.$el.textContent = content
@@ -30,11 +35,6 @@ class Dom {
       return this
     }
     return this.$el.getAttribute(name)
-  }
-
-  clear() {
-    this.html('')
-    return this
   }
 
   focus() {
